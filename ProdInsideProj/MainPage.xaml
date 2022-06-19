@@ -1,0 +1,134 @@
+﻿<Page
+    x:Class="ProdInsideProj.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+
+    xmlns:local="clr-namespace:ProdInsideProj.Services"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="720" Width="1280">
+
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <NavigationView
+                Grid.Column="0"
+                x:Name="NavigationPart" IsSettingsVisible="False"
+                IsBackButtonVisible="Collapsed"
+                CompactPaneLength="320"
+                PaneDisplayMode="LeftCompact" IsPaneToggleButtonVisible="False">
+
+            </NavigationView>
+
+
+            <Frame 
+                Visibility="Collapsed"
+                Grid.Column="1"
+                x:Name="MainPanel"
+                Margin="50,100,50,50">
+                <TextBlock 
+                    Text="Баланс"
+                    FontSize="80"
+                    FontWeight="Bold">
+                </TextBlock>
+            </Frame>
+            <Frame
+                Visibility="Collapsed"
+                Grid.Column="1"
+                x:Name="NewOperationPanel"
+                >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition Height="0.8*"></RowDefinition>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical"
+                                    Margin="20">
+                            <TextBlock Text="Сумма операции"
+                                       FontSize="30"
+                                       />
+                            <TextBox Margin="0,10"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Vertical"
+                                    Margin="20">
+                            <TextBlock Text="Тип операции"
+                                       FontSize="30"/>
+                            <ComboBox Margin="0,10"
+                                      />
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Категория"
+                                       FontSize="50"/>
+
+                            <ComboBox Margin="0,40"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Vertical">
+                            <TextBlock Text="Комментарий"
+                                       FontSize="50"/>
+                            <TextBox Margin="0,40"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Button Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Width="150"
+                            Height="75"
+                            Background="LightBlue"
+                            Margin="40"/>
+                    <Button Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Width="150"
+                            Height="75"
+                            Background="LightGreen"
+                            Margin="230,40"/>
+                </Grid>
+            </Frame>
+            <Frame
+                x:Name="HistoryPanel"
+                Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        
+                    </Grid.RowDefinitions>
+
+                    <controls:DataGrid x:Name="DGridOperations"
+                                       Grid.Row="1">
+                        <controls:DataGrid.Columns>
+                            <controls:DataGridTextColumn Header="First" Width="*"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Second"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Third"></controls:DataGridTextColumn>
+                        </controls:DataGrid.Columns>
+
+                    </controls:DataGrid >
+                </Grid>
+            </Frame>
+        </Grid>
+
+    </Grid>
+    
+</Page>
