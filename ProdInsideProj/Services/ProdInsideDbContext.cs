@@ -26,6 +26,6 @@ namespace ProdInsideProj.Services
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Filename=Test.db");
+        => options.UseSqlite($"Filename=Test2.db");
     }
 }

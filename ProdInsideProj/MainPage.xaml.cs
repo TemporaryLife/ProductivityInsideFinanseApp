@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ProdInsideProj.Services;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -25,7 +26,9 @@ namespace ProdInsideProj
         public MainPage()
         {
             this.InitializeComponent();
-            CreateButtons();  
+            CreateButtons();
+            this.DataContext = new OperationDatabaseService();
+
         }
 
        private void CreateButtons()
@@ -44,6 +47,9 @@ namespace ProdInsideProj
             return item;
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

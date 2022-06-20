@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
 
-    xmlns:local="clr-namespace:ProdInsideProj.Services"
+    xmlns:local="clr-namespace:ProdInsideProj"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -38,7 +38,7 @@
                 </TextBlock>
             </Frame>
             <Frame
-                Visibility="Collapsed"
+                Visibility="Visible"
                 Grid.Column="1"
                 x:Name="NewOperationPanel"
                 >
@@ -59,7 +59,9 @@
                             <TextBlock Text="Сумма операции"
                                        FontSize="30"
                                        />
-                            <TextBox Margin="0,10"/>
+                            <TextBox Margin="0,10"
+                                     InputScope="Number"
+                                     Text="{Binding NewOperation.OperationSum ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1"
                                     Orientation="Vertical"
@@ -80,13 +82,17 @@
                             <TextBlock Text="Категория"
                                        FontSize="50"/>
 
-                            <ComboBox Margin="0,40"/>
+                            <ComboBox x:Name="CategoryBox" Margin="0,40"
+                                      ItemsSource="{Binding viewModel.ConsumptionCategories}"
+                                      SelectedValue ="{Binding NewOperation.OperationCategory ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Width="200"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1"
                                     Orientation="Vertical">
                             <TextBlock Text="Комментарий"
                                        FontSize="50"/>
-                            <TextBox Margin="0,40"/>
+                            <TextBox Margin="0,40"
+                                     Text="{Binding NewOperation.Comment ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         
                     </Grid>
@@ -96,17 +102,24 @@
                             Width="150"
                             Height="75"
                             Background="LightBlue"
-                            Margin="40"/>
+                            Margin="40"
+
+                            Command="{Binding AddCommand}"
+                            
+                            />
                     <Button Grid.Row="2"
+                            
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             Width="150"
                             Height="75"
                             Background="LightGreen"
-                            Margin="230,40"/>
+                            Margin="230,40"
+                            Command="{Binding ResetCommand}"/>
                 </Grid>
             </Frame>
             <Frame
+                Visibility="Collapsed"
                 x:Name="HistoryPanel"
                 Grid.Column="1">
                 <Grid>

@@ -34,7 +34,9 @@ namespace ProdInsideProj
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            using (var db = new ProdInsideDbContext()) 
+
+            
+            /*using (var db = new ProdInsideDbContext()) 
             {
                 var a = db.Accounts.ToList();
 
@@ -42,7 +44,7 @@ namespace ProdInsideProj
                 
                 db.SaveChanges();
 
-            }
+            }*/
         }
 
         /// <summary>
