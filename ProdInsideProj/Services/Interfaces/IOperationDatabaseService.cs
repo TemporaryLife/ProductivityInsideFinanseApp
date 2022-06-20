@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace ProdInsideProj.Services.Interfaces
 {
     interface IOperationDatabaseService
     {
-        bool AddOperation();
-        bool DeleteOperation();
-        bool ChangeOperationInfo();
+        RelayCommand AddCommand { get;  }
+        RelayCommand ResetCommand { get; }
+
 
 
     }

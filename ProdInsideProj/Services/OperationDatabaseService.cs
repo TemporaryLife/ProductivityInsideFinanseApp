@@ -13,15 +13,30 @@ using System.Threading.Tasks;
 
 namespace ProdInsideProj.Services
 {
-    internal class OperationDatabaseService 
+    internal class OperationDatabaseService : IOperationDatabaseService
     {
 
-        public MainPageViewModel viewModel { get; set; } = new MainPageViewModel();
+        public MainPageViewModel viewModel { get; set; }
+        public List<string> ActiveTypeOfOperation { get; set; }       
+        public Operation NewOperation { get; set; }
 
-        public Operation NewOperation { get; set; } = new Operation();
-
+        public BalanceOperationsService balanceOperationsService { get; set; }
+        public Account usingAccount { get; set; }
         private RelayCommand addCommand { get; set; }
         private RelayCommand resetCommand { get; set; }
+
+
+
+
+
+        public OperationDatabaseService()
+        {
+            NewOperation = new Operation();
+            ActiveTypeOfOperation = new List<string>();
+            viewModel = new MainPageViewModel();
+            balanceOperationsService = new BalanceOperationsService();
+            usingAccount = balanceOperationsService.UsingAccount;
+        }
 
         public RelayCommand AddCommand
         {
@@ -30,21 +45,32 @@ namespace ProdInsideProj.Services
                 return addCommand ??
                     (addCommand = new RelayCommand(() =>
                     {
+                        
                         using (var db = new ProdInsideDbContext())
                         {
                             var newOper = new Operation
                             {
                                 OperationSum = NewOperation.OperationSum,
-                                Comment = NewOperation.Comment,
-                                OperationCategory = NewOperation.OperationCategory
+                                OperationCategory = NewOperation.OperationCategory,
+                                OperationType=viewModel.ActiveType,
+                                Comment = NewOperation.Comment,                              
                             };
 
-                            db.Operations.Add(newOper);
+                            if (viewModel.ActiveType == "Доход")
+                            {
+                                usingAccount.AccountBalance = balanceOperationsService.Income(usingAccount, true, NewOperation.OperationSum);
 
-                            var a = db.Operations.Count();
-                            var b = db.Operations;
+                            }
+                            else
+                            {
+                                usingAccount.AccountBalance = balanceOperationsService.Income(usingAccount, false, NewOperation.OperationSum);
+                            }
+
+                            db.Operations.Add(newOper);
+                            db.Update(usingAccount);
                             db.SaveChanges();
                         }
+                        
                     }));
             }
         }
@@ -57,22 +83,13 @@ namespace ProdInsideProj.Services
                     (resetCommand = new RelayCommand(() =>
                     {
                         NewOperation.OperationSum = 0;
-                        NewOperation.Comment = "";
+                        viewModel.ActiveType = "";
                         NewOperation.OperationCategory = "";
+                        NewOperation.Comment = "";
                     }
                     ));
             }
         }
-        
 
-        public bool ChangeOperationInfo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteOperation()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -27,6 +27,7 @@ namespace ProdInsideProj
         {
             this.InitializeComponent();
             CreateButtons();
+            
             this.DataContext = new OperationDatabaseService();
 
         }
@@ -47,9 +48,8 @@ namespace ProdInsideProj
             return item;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+
+
     }
 }

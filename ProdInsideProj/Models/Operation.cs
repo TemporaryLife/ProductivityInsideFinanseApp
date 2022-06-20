@@ -78,7 +78,7 @@ namespace ProdInsideProj.Models
         //Foreign Key
         public Operation()
         {
-            OperationDate = new DateTime().Date;
+            OperationDate = DateTime.Now;
             
             
         }

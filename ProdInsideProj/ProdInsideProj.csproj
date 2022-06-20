@@ -125,6 +125,8 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BalanceOperationsService.cs" />
+    <Compile Include="Services\Interfaces\IBalanceOperationsService.cs" />
     <Compile Include="Services\Interfaces\IOperationDatabaseService.cs" />
     <Compile Include="Services\OperationDatabaseService.cs" />
     <Compile Include="Services\ProdInsideDbContext.cs" />

@@ -27,5 +27,25 @@ namespace ProdInsideProj.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Filename=Test2.db");
+
+        public static Account GetOrCreateAccount()
+        {
+            using (var db = new ProdInsideDbContext())
+            {
+                Account account;
+                if (db.Accounts.Count() == 0)
+                {
+                    account = new Account();
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    account = db.Accounts.ToArray()[0];
+                }
+                
+                return account;
+            }
+        }
     }
 }
