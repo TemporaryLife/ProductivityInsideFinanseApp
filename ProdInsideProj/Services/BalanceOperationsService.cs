@@ -1,14 +1,10 @@
 ﻿using ProdInsideProj.Models;
 using ProdInsideProj.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProdInsideProj.Services
 {
-    public class BalanceOperationsService : IBalanceOperationsService
+    public sealed class BalanceOperationsService : IBalanceOperationsService
     {
         public Account UsingAccount { get; }
 

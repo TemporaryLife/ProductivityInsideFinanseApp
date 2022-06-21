@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="a0a9d9ae-d084-40c2-aa00-e8e0d35ddf4f"
+    Name="fa136c29-3cf3-44da-a418-d6f4f8ce2dda"
     Publisher="CN=Анатолий"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="a0a9d9ae-d084-40c2-aa00-e8e0d35ddf4f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="fa136c29-3cf3-44da-a418-d6f4f8ce2dda" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ProdInsideProj</DisplayName>

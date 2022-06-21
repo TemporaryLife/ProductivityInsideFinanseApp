@@ -14,10 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.EntityFrameworkCore;
-using ProdInsideProj.Services;
-using ProdInsideProj.Models;
-
 
 namespace ProdInsideProj
 {
@@ -34,17 +30,6 @@ namespace ProdInsideProj
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            
-            /*using (var db = new ProdInsideDbContext()) 
-            {
-                var a = db.Accounts.ToList();
-
-                var c = db.Accounts.FirstOrDefault(x => x.Id == 228);
-                
-                db.SaveChanges();
-
-            }*/
         }
 
         /// <summary>
@@ -86,7 +71,6 @@ namespace ProdInsideProj
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();
             }
-            
         }
 
         /// <summary>

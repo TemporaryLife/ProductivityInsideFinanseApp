@@ -9,7 +9,7 @@ namespace ProdInsideProj.Services.Interfaces
 {
     interface IOperationDatabaseService
     {
-        RelayCommand AddCommand { get;  }
+        RelayCommand AddCommand { get; }
         RelayCommand ResetCommand { get; }
 
 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProdInsideProj.Models
 {
@@ -13,17 +10,17 @@ namespace ProdInsideProj.Models
         private double accountBalance;
 
         public int Id { get; set; }
-        public double AccountBalance 
+        public double AccountBalance
         {
             get
             {
-                return accountBalance;               
+                return accountBalance;
             }
-            set 
+            set
             {
                 accountBalance = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         public List<Operation> AccountOperations { get; set; }

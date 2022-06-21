@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ProdInsideProj.Services;
+using ProdInsideProj.ViewModels;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -23,33 +24,31 @@ namespace ProdInsideProj
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        private Frame CurrentVisibleWindow;
+        private Frame PreviousVisibleWindow;
+
         public MainPage()
         {
             this.InitializeComponent();
-            CreateButtons();
-            
+            CurrentVisibleWindow = PreviousVisibleWindow = MainPanel;
             this.DataContext = new OperationDatabaseService();
 
+
         }
 
-       private void CreateButtons()
+
+
+        private void NavigationPart_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            NavigationPart.MenuItems.Add(CreateMenuViewItem("MainButton", "Счёт"));
-            NavigationPart.MenuItems.Add(CreateMenuViewItem("MakeOperationButton", "Операции"));
-            NavigationPart.MenuItems.Add(CreateMenuViewItem("AccountHistoryButton", "История"));
+            NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+
+            PreviousVisibleWindow = CurrentVisibleWindow;
+            PreviousVisibleWindow.Visibility = Visibility.Collapsed;
+            CurrentVisibleWindow = item.Name == "MainButton" ? MainPanel :
+                                   item.Name == "OperationButton" ? NewOperationPanel :
+                                   item.Name == "HistoryButton"?HistoryPanel:StatisticPanel;
+            CurrentVisibleWindow.Visibility = Visibility.Visible;
         }
-
-        private NavigationViewItem CreateMenuViewItem(string name, string text)
-        {
-            NavigationViewItem item = new NavigationViewItem();
-            item.Content = text;
-            item.FontSize = 16;
-            item.Name = name;
-            return item;
-        }
-
-
-
-
     }
 }

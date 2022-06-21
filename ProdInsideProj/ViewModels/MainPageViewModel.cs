@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProdInsideProj.ViewModels
 {
@@ -12,44 +9,14 @@ namespace ProdInsideProj.ViewModels
     {
 
         private string activeType;
-
-        private List<string> activeCategoryList;
+        private string errorMessage;
+        private string successfulInputMessage;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static List<string> IncomeCategories { get; set; } = new List<string>
-        {
-            "Зарплата",
-            "Стипендия",
-            "Дивиденды"
-        };
+        private List<string> activeCategoryList;
+       
 
-        public static List<string> ConsumptionCategories { get; set; } = new List<string>
-        {
-            "Развлечение",
-            "Еда",
-            "Транспорт",
-            "Здоровье"
-
-        };
-
-        public static List<string> TypeOfOperation { get; set; } = new List<string>
-        {
-            "Доход",
-            "Расход"
-        };
-
-        public List<string> ActiveCategoryList 
-        { 
-            get => activeCategoryList; 
-
-            set 
-            {
-                activeCategoryList = value;
-                OnPropertyChanged();
-            } 
-        }
-        
         public string ActiveType
         {
             get { return activeType; }
@@ -68,6 +35,64 @@ namespace ProdInsideProj.ViewModels
                 }
 
 
+            }
+        }
+
+        public static List<string> IncomeCategories { get; set; } = new List<string>
+        {
+            "Зарплата",
+            "Стипендия",
+            "Дивиденды"
+        };
+
+        public static List<string> ConsumptionCategories { get; set; } = new List<string>
+        {
+            "Развлечения",
+            "Еда",
+            "Транспорт",
+            "Здоровье"
+
+        };
+
+        public static List<string> TypeOfOperation { get; set; } = new List<string>
+        {
+            "Доход",
+            "Расход"
+        };
+
+        public List<string> ActiveCategoryList
+        {
+            get => activeCategoryList;
+
+            set
+            {
+                activeCategoryList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SuccessfulInputMessage
+        {
+            get
+            {
+                return successfulInputMessage;
+            }
+            set
+            {
+                successfulInputMessage = value;
+                OnPropertyChanged();
             }
         }
 

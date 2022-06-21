@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProdInsideProj.Models
 {
-    public class Operation :INotifyPropertyChanged
+    public class Operation : INotifyPropertyChanged
     {
 
         private int operationSum;
         private string operationType;
         private string operationCategory;
-        private string comment="123";
+        private string comment;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Id { get; set; }
         public DateTime OperationDate { get; set; }
+
         public int OperationSum
         {
-            get 
+            get
             {
                 return operationSum;
             }
@@ -27,7 +28,7 @@ namespace ProdInsideProj.Models
             {
                 operationSum = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         public string OperationType
@@ -69,20 +70,11 @@ namespace ProdInsideProj.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        /*public int AccountId { get; set; }*/
-
-
-
-        //Foreign Key
         public Operation()
         {
             OperationDate = DateTime.Now;
-            
-            
         }
-
 
         public void OnPropertyChanged([CallerMemberName] string property = "")
         {
