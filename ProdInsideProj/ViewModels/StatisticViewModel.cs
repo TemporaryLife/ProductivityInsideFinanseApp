@@ -10,16 +10,16 @@ namespace ProdInsideProj.ViewModels
 {
     internal class StatisticViewModel : INotifyPropertyChanged
     {
-        private double spendedForTimePeriod;
-        private double receivedForTimePeriod;
+        private int spendedForTimePeriod;
+        private int receivedForTimePeriod;
+        private int spendedForHealth;
+        private int spendedForTransport;
+        private int spendedForEnjoyment;
+        private int spendedForFood;
+        private int receivedBySalary;
+        private int receivedByStipend;
+        private int receivedByDividends;
         private string periodToCheck;
-        private double spendedForHealth;
-        private double spendedForTransport;
-        private double spendedForEnjoyment;
-        private double spendedForFood;
-        private double receivedBySalary;
-        private double receivedByStipend;
-        private double receivedByDividends;
         private List<string> timePeriodList;
 
         public static List<Operation> OperationsForRequiredPeriod { get; set; }
@@ -39,7 +39,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double SpendedForTimePeriod
+        public int SpendedForTimePeriod
         {
             get
             {
@@ -52,7 +52,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double ReceivedForTimePeriod
+        public int ReceivedForTimePeriod
         {
             get
             {
@@ -81,7 +81,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double SpendedForHealth
+        public int SpendedForHealth
         {
             get => spendedForHealth;
 
@@ -92,7 +92,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double SpendedForTransport
+        public int SpendedForTransport
         {
             get => spendedForTransport;
 
@@ -103,7 +103,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double SpendedForEnjoyment
+        public int SpendedForEnjoyment
         {
             get => spendedForEnjoyment;
 
@@ -114,7 +114,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double SpendedForFood
+        public int SpendedForFood
         {
             get => spendedForFood;
 
@@ -125,7 +125,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double ReceivedBySalary
+        public int ReceivedBySalary
         {
             get => receivedBySalary;
 
@@ -136,7 +136,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double ReceivedByStipend
+        public int ReceivedByStipend
         {
             get => receivedByStipend;
 
@@ -147,7 +147,7 @@ namespace ProdInsideProj.ViewModels
             }
         }
 
-        public double ReceivedByDividends
+        public int ReceivedByDividends
         {
             get => receivedByDividends;
 
@@ -166,6 +166,7 @@ namespace ProdInsideProj.ViewModels
                 "Неделя",
                 "Месяц"
             };
+
             periodToCheck = TimePeriodList[0];
             SpendedForTimePeriod = GetMoneyChangesForPeriod(periodToCheck, false);
             ReceivedForTimePeriod = GetMoneyChangesForPeriod(periodToCheck, true);
@@ -181,12 +182,11 @@ namespace ProdInsideProj.ViewModels
         }
 
 
-        public static double GetMoneyChangesForPeriod(string timePeriod, bool isIncome)
+        public static int GetMoneyChangesForPeriod(string timePeriod, bool isIncome)    // using required time period takes DB data to show it
         {
             string operationType = isIncome ? "Доход" : "Расход";
-            double moneyChanges = 0;
+            int moneyChanges = 0;
             List<Operation> requiredOperations;
-
 
             if (timePeriod == "День")
             {
@@ -202,11 +202,10 @@ namespace ProdInsideProj.ViewModels
             }
             requiredOperations = OperationsForRequiredPeriod.Where(x => x.OperationType == operationType).ToList();
             moneyChanges = requiredOperations.Sum(x => x.OperationSum);
-
             return moneyChanges;
         }
 
-        public void ChangeAllCategoriesToShow()
+        public void ChangeAllCategoriesToShow()        // Taking operation sums by categories
         {
             ReceivedByDividends = OperationsForRequiredPeriod.Where(x => x.OperationCategory == "Дивиденды").Sum(x => x.OperationSum);
             ReceivedBySalary = OperationsForRequiredPeriod.Where(x => x.OperationCategory == "Зарплата").Sum(x => x.OperationSum);
@@ -215,7 +214,6 @@ namespace ProdInsideProj.ViewModels
             SpendedForFood = OperationsForRequiredPeriod.Where(x => x.OperationCategory == "Еда").Sum(x => x.OperationSum);
             SpendedForHealth = OperationsForRequiredPeriod.Where(x => x.OperationCategory == "Здоровье").Sum(x => x.OperationSum);
             SpendedForTransport = OperationsForRequiredPeriod.Where(x => x.OperationCategory == "Транспорт").Sum(x => x.OperationSum);
-
         }
     }
 }

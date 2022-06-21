@@ -10,8 +10,8 @@ namespace ProdInsideProj.ViewModels
     internal class HistoryPanelViewModel : INotifyPropertyChanged
     {
         private List<Operation> operationsToShowInHistory;
-
         public event PropertyChangedEventHandler PropertyChanged;
+
         public List<Operation> OperationsToShowInHistory
         {
             get
@@ -29,7 +29,6 @@ namespace ProdInsideProj.ViewModels
         {
             OperationsToShowInHistory = ProdInsideDbContext.GetLastOperations();
         }
-
 
         public void OnPropertyChanged([CallerMemberName] string property = "")
         {

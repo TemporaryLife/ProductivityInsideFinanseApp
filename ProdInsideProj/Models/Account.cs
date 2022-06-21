@@ -7,10 +7,11 @@ namespace ProdInsideProj.Models
 {
     public class Account : INotifyPropertyChanged
     {
-        private double accountBalance;
+        private int accountBalance;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public int Id { get; set; }
-        public double AccountBalance
+        public int AccountBalance
         {
             get
             {
@@ -22,11 +23,7 @@ namespace ProdInsideProj.Models
                 OnPropertyChanged();
             }
         }
-
         public List<Operation> AccountOperations { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         public void OnPropertyChanged([CallerMemberName] string property = "")
         {

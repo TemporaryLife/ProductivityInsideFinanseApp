@@ -11,32 +11,8 @@ namespace ProdInsideProj.ViewModels
         private string activeType;
         private string errorMessage;
         private string successfulInputMessage;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         private List<string> activeCategoryList;
-       
-
-        public string ActiveType
-        {
-            get { return activeType; }
-            set
-            {
-                activeType = value;
-                OnPropertyChanged();
-
-                if (value == "Доход")
-                {
-                    ActiveCategoryList = IncomeCategories;
-                }
-                else if (value == "Расход")
-                {
-                    ActiveCategoryList = ConsumptionCategories;
-                }
-
-
-            }
-        }
 
         public static List<string> IncomeCategories { get; set; } = new List<string>
         {
@@ -60,6 +36,27 @@ namespace ProdInsideProj.ViewModels
             "Расход"
         };
 
+        public bool IsEnoughMoney { get; set; }
+        public string ActiveType
+        {
+            get { return activeType; }
+            set
+            {
+                activeType = value;
+                OnPropertyChanged();
+
+                if (value == "Доход")
+                {
+                    ActiveCategoryList = IncomeCategories;
+                }
+                else if (value == "Расход")
+                {
+                    ActiveCategoryList = ConsumptionCategories;
+                }
+
+
+            }
+        }
         public List<string> ActiveCategoryList
         {
             get => activeCategoryList;
@@ -70,7 +67,6 @@ namespace ProdInsideProj.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string ErrorMessage
         {
             get

@@ -11,8 +11,5 @@ namespace ProdInsideProj.Services.Interfaces
     {
         RelayCommand AddCommand { get; }
         RelayCommand ResetCommand { get; }
-
-
-
     }
 }

@@ -12,12 +12,10 @@ namespace ProdInsideProj.Models
         private string operationType;
         private string operationCategory;
         private string comment;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public int Id { get; set; }
         public DateTime OperationDate { get; set; }
-
         public int OperationSum
         {
             get
@@ -30,7 +28,6 @@ namespace ProdInsideProj.Models
                 OnPropertyChanged();
             }
         }
-
         public string OperationType
         {
             get
@@ -43,7 +40,6 @@ namespace ProdInsideProj.Models
                 OnPropertyChanged();
             }
         }
-
         public string OperationCategory
         {
             get
@@ -56,7 +52,6 @@ namespace ProdInsideProj.Models
                 OnPropertyChanged();
             }
         }
-
         public string Comment
         {
             get
@@ -74,6 +69,8 @@ namespace ProdInsideProj.Models
         public Operation()
         {
             OperationDate = DateTime.Now;
+            OperationCategory = "";
+            OperationType = "";
         }
 
         public void OnPropertyChanged([CallerMemberName] string property = "")

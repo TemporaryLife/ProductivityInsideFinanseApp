@@ -13,7 +13,7 @@ namespace ProdInsideProj.Services
             UsingAccount = ProdInsideDbContext.GetOrCreateAccount();
         }
 
-        public double Income(Account usingAccount, bool isIncome, double sum)
+        public int Income(Account usingAccount, bool isIncome, int sum) // Changing balance if there are enough money
         {
             if (isIncome)
             {

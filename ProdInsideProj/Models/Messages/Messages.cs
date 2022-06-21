@@ -12,5 +12,7 @@ namespace ProdInsideProj.Models.Messages
                                                                                   "\nЗаполните поля, введите целую положительную сумму до 1млн $.";
 
         public static string SuccessfulInputMessage { get; set; } = "Запись успешно добавлена";
+
+        public static string NotEnoughMoneyMessage { get; set; } = "Расход превышает баланс счета. Для совершения транзакции необходимо пополнение.";
     }
 }

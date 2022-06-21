@@ -55,7 +55,7 @@
 
 
             <Frame 
-                Visibility="Collapsed"
+                Visibility="Visible"
                 Grid.Column="1"
                 x:Name="MainPanel"
                 Margin="50,100">
@@ -75,7 +75,7 @@
 
             </Frame>
             <Frame
-                Visibility="Visible"
+                Visibility="Collapsed"
                 Grid.Column="1"
                 x:Name="NewOperationPanel"
                 >
@@ -157,10 +157,10 @@
                                />
                     <TextBlock Text="{Binding viewModel.SuccessfulInputMessage}"
                                Grid.Row="2"
-                               Margin="20,0"
+                               Margin="0,50,40,0"
                                FontSize="18"
                                Foreground="Green"
-                               HorizontalAlignment="Center"></TextBlock>
+                               HorizontalAlignment="Right"></TextBlock>
                     
                                
                               

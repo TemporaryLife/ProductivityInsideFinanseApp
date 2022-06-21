@@ -11,9 +11,7 @@ namespace ProdInsideProj.Services
     {
         public DbSet<Operation> Operations { get; set; }
         public DbSet<Account> Accounts { get; set; }
-
         public string DbPath { get; }
-
 
         public ProdInsideDbContext()
         {
@@ -21,10 +19,10 @@ namespace ProdInsideProj.Services
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Filename=Test4.db");
+        => options.UseSqlite($"Filename=ProductivityInsideDataBase.db");
 
-        public static Account GetOrCreateAccount()
-        {
+        public static Account GetOrCreateAccount()                                  // If there are no account, create it
+        {                                                                           // If it's created, takes it
             using (var db = new ProdInsideDbContext())
             {
                 Account account;
@@ -32,7 +30,7 @@ namespace ProdInsideProj.Services
                 {
                     account = new Account();
                     db.Accounts.Add(account);
-                     db.SaveChanges();
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -43,7 +41,7 @@ namespace ProdInsideProj.Services
             }
         }
 
-        public static List<Operation> GetLastOperations()
+        public static List<Operation> GetLastOperations()                               // Takes DB context to show it in app
         {
             var list = new List<Operation>();
             using (var db = new ProdInsideDbContext())
@@ -53,7 +51,7 @@ namespace ProdInsideProj.Services
             return list;
         }
 
-        public static List<Operation> GetOperationsForSomePeriod(int timePeriodDays)
+        public static List<Operation> GetOperationsForSomePeriod(int timePeriodDays)      // Takes DB context using required time period to see stat
         {
             var list = new List<Operation>();
 
